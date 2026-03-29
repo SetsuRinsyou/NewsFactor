@@ -1,0 +1,72 @@
+market:
+  default: cn          # cn | us
+  cn_calendar: XSHG
+  us_calendar: NYSE
+
+data:
+  cache_dir: .cache
+  cache_ttl_hours: 24
+
+news:
+  em_news:
+    enabled: true
+    delay_seconds: 0.5   # polite crawl delay between tickers
+
+  newsapi:
+    enabled: false
+    api_key: ${NEWSAPI_KEY}
+    language: en
+    page_size: 100
+
+  rss:
+    enabled: false
+    feeds: []            # list of RSS feed URLs
+
+  twitter:
+    enabled: false
+    bearer_token: ${TWITTER_BEARER_TOKEN}
+    max_results: 100
+
+  stocktwits:
+    enabled: false
+    # no auth required for public messages endpoint
+
+  weibo:
+    enabled: false
+    # stub: requires enterprise API approval
+
+  gdelt:
+    enabled: false
+    language: null           # e.g. "Chinese" | "English" | null (no filter)
+    num_records: 250         # max per query, GDELT API cap is 250
+    delay_seconds: 15.0      # polite delay between ticker requests
+
+nlp:
+  backend: vader         # finbert-en | finbert-zh | vader
+  batch_size: 32
+  device: cpu            # cpu | cuda | mps
+  finbert_en_model: yiyanghkust/finbert-tone
+  finbert_zh_model: hw2942/bert-base-chinese-finetuning-financial-news-sentiment-v2
+
+  event_keywords:
+    earnings:    ["业绩", "净利润", "营收", "EPS", "earnings", "revenue", "profit"]
+    merger:      ["收购", "并购", "合并", "acquisition", "merger", "takeover"]
+    litigation:  ["诉讼", "起诉", "罚款", "lawsuit", "fine", "penalty", "litigation"]
+    dividend:    ["分红", "派息", "dividend", "payout"]
+    leadership:  ["CEO", "董事长", "辞职", "任命", "resign", "appoint"]
+
+factors:
+  sentiment_ma:
+    window: 5            # trading days
+  sentiment_ewm:
+    halflife: 3
+  social_buzz:
+    window: 5
+  event_intensity:
+    decay_days: 3
+
+backtest:
+  periods: [1, 5, 20]   # forward return windows (trading days)
+  quantiles: 5
+  filter_zscore: 20
+  max_loss: 0.95

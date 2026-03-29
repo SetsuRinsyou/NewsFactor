@@ -1,0 +1,31 @@
+# --- Market Data ---
+akshare>=1.12.0
+yfinance>=0.2.40
+
+# --- NLP ---
+transformers>=4.40.0
+vaderSentiment>=3.3.2
+feedparser>=6.0.11
+
+# --- Social / News APIs ---
+tweepy>=4.14.0
+newsapi-python>=0.2.7
+
+# --- Factor Analysis / Backtest ---
+alphalens-reloaded>=0.4.3
+scipy>=1.12.0
+
+# --- Data ---
+pandas>=2.1.0
+numpy>=1.26.0
+
+# --- Caching ---
+diskcache>=5.6.3
+
+# --- Config ---
+PyYAML>=6.0.1
+python-dotenv>=1.0.1
+
+# --- Utils ---
+pandas-market-calendars>=4.3.1
+requests>=2.31.0
